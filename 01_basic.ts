@@ -87,3 +87,39 @@ const unionResult: string | number = unionFunc(1, 2); // 타입 불일치 에러
 function intersectionFunc(x: string & number, y: string & number): string & number {
   return x + y;
 }
+
+
+// type 상속, interface extends
+type Animal = { breath: true };
+type Mammal = Animal & { milk: true };
+type Human = Mammal & { language: true };
+
+const Sim1: Human = { breath: true, milk: true, language: true };
+
+interface AnimalInterface {
+  breath: true
+}
+interface MammalInterface extends AnimalInterface {
+  milk: true
+}
+interface HumanInterface extends MammalInterface {
+  language: true
+}
+const Sim2: HumanInterface = { breath: true, milk: true, language: true };
+
+
+// void: return 값이 없는 함수 타입
+function voidFunc(callback: () => void): void { // return 값이 없어야한다
+}
+voidFunc(() => {
+  return '3';
+});
+
+interface voidInterface { // return 값이 없는 함수 타입
+  talk: () => void;
+}
+const voidObj: voidInterface = {
+  talk: () => {
+    return 'hello';
+  }
+}
